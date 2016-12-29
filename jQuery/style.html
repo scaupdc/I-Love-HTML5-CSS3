@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <title>hello jquery</title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script>
+    $(document).ready(function() {
+        var size = $('#test').css('font-size');
+        console.log(size);
+        $('#test').css({
+            fontSize: '5em',
+            backgroundColor: 'blue'
+        });
+    });
+    </script>
+    <style>
+    span {
+        font-size: 1em;
+        background-color: red;
+    }
+    </style>
+</head>
+<meta charset="utf-8">
+
+<body>
+    <span id="test">hello world</span>
+</body>
+
+</html>

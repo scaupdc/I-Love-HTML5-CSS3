@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <title>attr</title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script>
+    $(document).ready(function() {
+        var a = $("#test");
+        alert(a.attr("href"));
+        a.attr('href', 'http://www.google.com');
+    });
+    </script>
+</head>
+<meta charset="utf-8">
+
+<body>
+    <a id="test" href="http://www.bing.com">clike me</a>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <title>select element</title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script>
+    $(document).ready(function() {
+        var element = $("#div_id");
+        alert(element.text());
+        element = $(".div_class");
+        alert(element.text());
+        element = $("div#div_span a").click(function(event) {
+            alert($(this).text());
+        });;
+
+        element = $("div:last()");
+        element.text('some text');
+
+        $("body > p").click(function() {
+            $(this).slideUp();
+        });
+    });
+    </script>
+    <style>
+    body > p {
+        color: red;
+        margin: 5px;
+        cursor: pointer;
+    }
+    
+    body > p:hover {
+        background: yellow;
+    }
+    
+    div#div_span span:nth-child(even) {
+        background-color: red;
+    }
+    </style>
+</head>
+<meta charset="utf-8">
+
+<body>
+    <div id="div_id">div_id</div>
+    <div class="div_class">div_class</div>
+    <div id="div_span">
+        <a href="#">a1</a>
+        <a href="#">a2</a>
+        <span>span1 in div</span>
+        <span>span2 in div</span>
+        <span>span2 in div</span>
+        <span>span2 in div</span>
+        <p>p1 in div</p>
+        <p>p2 in div</p>
+        <p>p3 in div</p>
+        <p>p4 in div</p>
+    </div>
+    <div>
+    </div>
+    <p>First Paragraph</p>
+    <p>Second Paragraph</p>
+    <p>Yet one more Paragraph</p>
+</body>
+
+</html>

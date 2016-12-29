@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <title>hello jquery</title>
+    <script src="js/jquery-3.1.1.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('div#main').find('span').html('new html').end().find('a').attr('href', 'http://www.baidu.com').click(function(event) {
+            $(this).style.color = yellow;
+            return false;
+        });;
+    });
+    </script>
+</head>
+<meta charset="utf-8">
+
+<body>
+    <div id="main">
+        <span>span</span>
+        <a href="#">google.com</a>
+    </div>
+    <div>hello</div>
+</body>
+
+</html>
