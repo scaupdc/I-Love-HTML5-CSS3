@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Hello Vue.js</title>
+</head>
+
+<body>
+    <div id="didi-navigator">
+        <ul>
+            <li v-for="tab in tabs">
+                {{tab.text}}
+            </li>
+        </ul>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+    var vm = new Vue({
+        el: '#didi-navigator',
+        data: {
+            tabs: [{
+                text: 'a1'
+            }, {
+                text: 'a2'
+            }, {
+                text: 'a3'
+            }, {
+                text: 'a4'
+            }, {
+                text: 'a5'
+            }, ]
+        }
+    });
+    </script>
+</body>
+
+</html>

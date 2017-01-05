@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Hello Vue.js</title>
+</head>
+
+<body>
+    <div id="test">
+        <my-comp></my-comp>
+        {{version}}
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+    Vue.component('my-comp', {
+        template: '<div>my-comp{{version}}</div>',
+        data: function() {
+            return {
+                version: 34
+            }
+        }
+    })
+
+    new Vue({
+        el: '#test',
+        data: {
+            version: 12
+        }
+    });
+    </script>
+</body>
+
+</html>
