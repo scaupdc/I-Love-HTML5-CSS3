@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <title>Object basics</title>
+</head>
+<meta charset="utf-8">
+
+<body>
+    Object basics
+</body>
+<script>
+//对象创建方法1
+var person = {
+    name: ['Bob', 'Tom'],
+    age: 16,
+    gender: 'male',
+    interests: ['music', 'dota2'],
+    son: {
+        boy: 'Jack',
+        girl: 'lucy'
+    },
+    bio: function() {
+        alert(this.name[0] + ' ' + this.age + ' ' + this.gender + ' ' + this.interests[0]);
+    },
+    greeting: function() {
+        alert('Hi, ' + this.son.girl);
+    }
+};
+person.bio();
+person.greeting();
+person.run = function(argument) {
+    alert(argument);
+};
+person.run('pdc');
+
+//对象创建方法2
+function createPerson(name) {
+    var obj = {};
+    obj.name = name;
+    obj.greeting = function() {
+        alert('Hi ' + this.name);
+    };
+    return obj;
+};
+var person1 = createPerson('lucy');
+var person2 = createPerson('tom');
+person1.greeting();
+person2.greeting();
+
+//对象创建方法3
+function Person(name) {
+    this.name = name;
+    this.greeting = function() {
+        alert('Hi2 ' + this.name);
+    }
+};
+var person3 = new Person('jack');
+person3.greeting();
+</script>
+
+</html>

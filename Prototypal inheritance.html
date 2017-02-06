@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <title>Prototypal inheritance</title>
+</head>
+<meta charset="utf-8">
+
+<body>
+    Prototypal inheritance
+</body>
+<script>
+function Person(one, two, age, gender, interests) {
+    this.name = {
+        one,
+        two
+    };
+    this.age = age;
+    this.gender = gender;
+    this.interests = interests;
+};
+Person.prototype.greeting = function() {
+    alert('Hi! I\'m ' + this.name.first + '.');
+};
+
+function Teacher(one, two, age, gender, interests, subject) {
+    Person.call(this, one, two, age, gender, interests);
+    this.subject = subject;
+};
+Teacher.prototype = Object.create(Person.prototype);
+alert(Teacher.constructor);
+alert(Teacher.prototype.constructor);
+Teacher.prototype.constructor = Teacher;
+alert(Teacher.prototype.constructor);
+Teacher.prototype.sayHello = function() {
+    alert(this.name.one + this.name.two + this.subject);
+};
+var lucy = new Teacher('peng', 'decheng', 18, 3, ['music', 'movie'], 'math');
+lucy.sayHello();
+</script>
+
+</html>

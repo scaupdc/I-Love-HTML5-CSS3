@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <title>prototype</title>
+</head>
+<meta charset="utf-8">
+
+<body>
+    prototype
+</body>
+<script>
+function Person(name) {
+    this.name = name;
+    this.greeting = function() {
+        alert('Hi2 ' + this.valueOf());
+        alert('Hi2 ' + this.__proto__);
+        alert('Hi2 ' + this.constructor);
+    }
+};
+var person = new Person('jack');
+person.greeting();
+Person.prototype.test = function() {
+    alert('test');
+};
+person.test();
+
+//常用的对象定义实践
+function Car(color, price) {
+    this.color = color;
+    this.price = price;
+};
+Car.prototype.getColor = function() {
+    alert(this.color);
+};
+Car.prototype.getPrice = function() {
+    alert(this.price);
+};
+var bmw = new Car('red', 10000);
+bmw.getColor();
+bmw.getPrice();
+</script>
+
+</html>
