@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Vue.js</title>
+</head>
+
+<body>
+    <div id="demo">
+        <button @click="counter ++">表达式事件</button>
+        <button @click="callback">方法事件</button>
+        <button @click="reset(0)">内联处理器方法事件</button>
+        <p>{{counter}}</p>
+        <input v-model.number="counter" type="number">
+        <input v-model.trim="msg">
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            counter: 0,
+            msg: 'hello'
+        },
+        methods: {
+            callback: function(event) {
+                this.counter++;
+            },
+            reset: function(value) {
+                this.counter = value;
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

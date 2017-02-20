@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Vue.js</title>
+</head>
+
+<body>
+    <div id="demo">
+        <p>string:{{str1}}</p>
+        <p>string computed:{{str2_cached}}</p>
+        <p>string methods:{{str2()}}</p>
+        <button v-on:click="test_computed">test computed</button>
+        <button v-on:click="test_methods">test methods</button>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            str1: 'hello'
+        },
+        computed: {
+            str2_cached: function() {
+                return this.str1.split('').reverse().join('') + Date.now();
+            }
+        },
+        methods: {
+            str2: function() {
+                return this.str1.split('').reverse().join('') + Date.now();
+            },
+            test_computed: function(event) {
+                alert(this.str2_cached);
+            },
+            test_methods: function(event) {
+                alert(this.str2());
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

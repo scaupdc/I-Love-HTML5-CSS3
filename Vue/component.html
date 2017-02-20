@@ -9,13 +9,14 @@
 
 <body>
     <div id="test">
-        <my-comp></my-comp>
-        {{version}}
+        <input v-model='version'>
+        <my-comp version_outer="pdc" :version_global='version'></my-comp>
     </div>
     <script src="js/vue.js"></script>
     <script>
     Vue.component('my-comp', {
-        template: '<div>my-comp{{version}}</div>',
+        template: '<div>my-comp{{version}} outer:{{version_outer}} global:{{version_global}}</div>',
+        props: ['version_outer', 'version_global'],
         data: function() {
             return {
                 version: 34
