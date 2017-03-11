@@ -11,6 +11,10 @@
     <div id="test">
         <input v-model='version'>
         <my-comp version_outer="pdc" :version_global='version'></my-comp>
+        <sub-comp></sub-comp>
+    </div>
+    <div id="test2">
+        <my-comp version_outer="pdc" :version_global='version'></my-comp>
     </div>
     <script src="js/vue.js"></script>
     <script>
@@ -23,11 +27,23 @@
             }
         }
     })
-
+    var sub = {
+        template: '<div>sub comp</div>'
+    }
     new Vue({
         el: '#test',
         data: {
             version: 12
+        },
+        components: {
+            'sub-comp': sub
+        }
+    });
+
+    new Vue({
+        el: '#test2',
+        data: {
+            version: 999
         }
     });
     </script>

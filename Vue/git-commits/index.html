@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>git-commits</title>
+</head>
+
+<body>
+    <h1>git commits</h1>
+    <div id="demo">
+        <template v-for="branch in branchs">
+            <input :id="branch" type="radio" name="branch" :value="branch" v-model="currentBranch">
+            <label :for="branch">{{branch}}</label>
+        </template>
+        <ul>
+            <li v-for="commit in commits"><a :href="commit.html_url" target="_blank" class="commit_li">{{commit.sha.slice(0,7)}}</a>-<span class="message">{{ commit.commit.message | cut }}</span>
+                <br>by <a :href="commit.author.html_url" target="_blank">{{ commit.commit.author.name }}</a> at <span class="time">{{ commit.commit.author.date | formatDate }}</span></li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+    var apiURL = 'https://api.github.com/repos/vuejs/vue/commits?per_page=3&sha='
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            branchs: ['master', 'dev'],
+            currentBranch: 'master',
+            commits: null
+        },
+        created: function() {
+            this.fetch()
+        },
+        watch: {
+            currentBranch: 'fetch'
+        },
+        filters: {
+            cut: function(v) {
+                var newline = v.indexOf('\n')
+                return newline > 0 ? v.slice(0, newline) : v
+            },
+            formatDate: function(v) {
+                return v.replace(/T|Z/g, ' ')
+            }
+        },
+        methods: {
+            fetch: function() {
+                var xhr = new XMLHttpRequest()
+                var self = this
+                xhr.open('GET', apiURL + self.currentBranch)
+                xhr.onload = function() {
+                    self.commits = JSON.parse(xhr.responseText)
+                    console.log(self.commits[0].html_url)
+                }
+                xhr.send()
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

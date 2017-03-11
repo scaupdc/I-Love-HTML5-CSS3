@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Vue.js</title>
+    <style>
+    body {
+        font-family: Helvetica Neue, Arial, sans-serif;
+        font-size: 14px;
+        color: #444;
+    }
+    
+    table {
+        border: 2px solid #42b983;
+        border-radius: 3px;
+        background-color: #fff;
+    }
+    
+    th {
+        background-color: #42b983;
+        color: rgba(255, 255, 255, 0.66);
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    td {
+        background-color: #f9f9f9;
+    }
+    
+    th,
+    td {
+        min-width: 120px;
+        padding: 10px 20px;
+    }
+    
+    th.active {
+        color: #fff;
+    }
+    
+    th.active .arrow {
+        opacity: 1;
+    }
+    
+    .arrow {
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        height: 0;
+        margin-left: 5px;
+        opacity: 0.66;
+    }
+    
+    .arrow.asc {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 4px solid #fff;
+    }
+    
+    .arrow.dsc {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid #fff;
+    }
+    </style>
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+    <script>
+    window.onload = function() {
+        new Vue({
+            el: "#demo",
+            data: {
+                search_query: '',
+                grid_columns: ['name', 'power'],
+                grid_datas: [{
+                    name: 'pdc',
+                    power: Infinity
+                }, {
+                    name: 'tom',
+                    power: 2000
+                }, {
+                    name: 'jack',
+                    power: 3000
+                }, {
+                    name: 'lucy',
+                    power: 4000
+                }]
+            }
+        })
+
+        Vue.component('data_table', {
+            template: "#grid_template",
+            props: {
+                c_search_query: String,
+                c_grid_columns: Array,
+                c_grid_data: Array
+            },
+            data: function() {
+                return {
+                    current_sort_key: '',
+                    current_sort_order: 1
+                }
+            },
+            computed: {
+                filtered_datas: function() {
+                    var new_datas = this.c_grid_data
+                    var search_word = this.c_search_query && this.c_search_query.toLowerCase()
+                    if (search_word) {
+                        new_datas = new_datas.filter(function(data_item) {
+                            return Object.keys(data_item).some(function(key) {
+                                return String(data_item[key]).toLowerCase().indexOf(search_word) > -1
+                            })
+                        })
+                    }
+                    if (current_sort_key) {
+                        new_datas = new_datas.sort(function(a, b) {
+                            a = a[current_sort_key]
+                            b = b[current_sort_key]
+                            return (a === b ? 0 : a > b ? 1 : -1) * current_sort_order
+                        })
+                    }
+                }
+            },
+            filters: {
+                capitalize: function(str) {
+                    return str.charAt(0).toUpperCase() + str.slice(1)
+                }
+            },
+            methods: {
+                sort_by: function function_name(key) {
+                    this.current_sort_key = key
+                    this.current_sort_order = this.current_sort_order * -1
+                }
+            }
+        })
+
+
+    }
+    </script>
+</head>
+
+<body>
+    <script type="text/x-template" id="grid_template">
+        <table>
+            <thead>
+                <tr>
+                    <th v-for="key in c_grid_columns" @click="sort_by(key)" :class="{ active: current_sort_key == key }">
+                        {{ key | capitalize }}
+                        <span class="arrow" v-if="current_sort_key == key" :class="current_sort_order > 0 ? 'asc' : 'dsc'"></span>
+                        <span class="arrow" v-else class="dsc"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="entry in filtered_datas">
+                    <td v-for="key in c_grid_columns">
+                        {{entry[key]}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </script>
+    <div id="demo">
+        <form id="search">
+            <span>search</span>
+            <input name="query">
+        </form>
+        <data_table :c_search_query="search_query" :c_grid_columns="grid_columns" :c_grid_data="grid_datas"></data_table>
+    </div>
+</body>
+
+</html>

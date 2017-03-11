@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>css rem</title>
+    <style>
+    .p1 {
+        font-size: 1rem;
+    }
+    
+    .p2 {
+        font-size: 2rem;
+    }
+    
+    .p2 span {
+        font-size: 1rem;
+    }
+    
+    @media (min-width: 0) {
+        html {
+            font-size: 10px;
+        }
+    }
+    
+    @media (min-width: 500px) {
+        html {
+            font-size: 20px;
+        }
+    }
+    
+    @media (min-width: 600px) {
+        html {
+            font-size: 30px;
+        }
+    }
+    
+    @media (min-width: 700px) {
+        html {
+            font-size: 40px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <p class="p1">彭德城</p>
+    <p class="p2">彭德城<span>彭德城</span></p>
+</body>
+
+</html>

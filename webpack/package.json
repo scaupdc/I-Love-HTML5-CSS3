@@ -1,0 +1,25 @@
+{
+  "name": "webpack-example",
+  "version": "1.0.0",
+  "description": "A simple webpack example.",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot --inline"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "pdc",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.10.0",
+    "jquery": "^3.1.1",
+    "sass-loader": "^6.0.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  }
+}

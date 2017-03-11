@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>css float</title>
+    <style>
+    body {
+        min-width: 800px;
+        height: 100%;
+    }
+    
+    div {
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        line-height: 200px;
+    }
+    
+    .div1 {
+        float: left;
+        background-color: red;
+    }
+    
+    .div2 {
+        background-color: blue;
+        /*用于消除DIV1float后造成的影响：DIV1脱离文档流，DIV2占据DIV1的空间导致DIV1挡住DIV2*/
+        clear: left;
+        float: left;
+    }
+    
+    .div3 {
+        background-color: yellow;
+        float: right;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="div1">彭德城</div>
+    <div class="div2">美的IT最帅的人</div>
+    <div class="div3">中国佛山</div>
+</body>
+
+</html>
