@@ -1,0 +1,25 @@
+body { background: blue; }
+
+div h1, span h1 { color: blue; }
+
+span { font-size: 20px; }
+
+p { float: left; margin-left: 20px; }
+
+ul { float: left; margin-left: 30px; }
+
+#navbar li { -moz-border-radius-topleft: 10px; -webkit-border-top-left-radius: 10px; border-top-left-radius: 10px; }
+
+#footer { -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; }
+
+#side { background-color: #000; }
+
+.a { background-image: url("/image/a.jpg"); }
+
+.b { background-image: url("/image/b.jpg"); }
+
+.c { background-image: url("/image/c.jpg"); }
+
+.d { background-image: url("/image/d.jpg"); }
+
+/*# sourceMappingURL=style1.css.map */

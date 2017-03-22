@@ -1,0 +1,66 @@
+$color:blue;
+body {
+    background: $color;
+}
+
+//嵌套
+div {
+    h1 {
+        color: $color;
+    }
+}
+
+span {
+    @extend div;
+    font-size: 20px;
+}
+
+@mixin left {
+    float: left;
+    margin-left: 10px;
+}
+
+@mixin left($value:20px) {
+    float: left;
+    margin-left: $value;
+}
+
+@mixin rounded($vert, $horz, $radius: 10px) {
+    -moz-border-radius-#{$vert}#{$horz}: $radius;
+    -webkit-border-#{$vert}-#{$horz}-radius: $radius;
+    border-#{$vert}-#{$horz}-radius: $radius;
+}
+
+p {
+    @include left;
+}
+
+ul {
+    @include left(30px);
+}
+
+#navbar li {
+    @include rounded(top, left);
+}
+
+#footer {
+    @include rounded(top, left, 5px);
+}
+
+#side {
+    @if lightness($color) > 30% {
+        background-color: #000;
+    }
+    @else {
+        background-color: #fff;
+    }
+}
+
+@each $member in a,
+b,
+c,
+d {
+    .#{$member} {
+        background-image: url("/image/#{$member}.jpg");
+    }
+}

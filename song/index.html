@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>song</title>
+    <script src="https://use.fontawesome.com/3481c5d21d.js"></script>
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+    
+    html,
+    body {
+        height: 100%;
+        padding: 0;
+        background-color: #fff;
+        margin: 0;
+        font-family: Lato, sans-serif;
+        color: #222;
+        font-size: 0.9em;
+    }
+    
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    main {
+        flex: 1 0 auto;
+        display: flex;
+        background-color: #ffffff;
+    }
+    
+    footer {
+        flex: 0 0 90px;
+        background-color: #f88e3f;
+        padding: 10px;
+        color: #fff;
+    }
+    
+    aside {
+        flex: 0 0 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #f2f2f2;
+    }
+    
+    aside i.fa {
+        font-size: 0.9em;
+    }
+    
+    section {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        background-color: gray;
+    }
+    
+    .music-head {
+        flex: 0 0 280px;
+        display: flex;
+        padding: 40px;
+        background-color: #58cdfa;
+    }
+    
+    .music-list {
+        flex: 1 0 auto;
+        list-style-type: none;
+        padding: 5px 10px 0;
+        background-color: #facd83;
+    }
+    
+    .img-wrapper {
+        border: 0;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .img-wrapper img {
+        width: 100%;
+    }
+    
+    li {
+        display: flex;
+        padding: 0 20px;
+        min-height: 50px;
+    }
+    
+    li p {
+        flex: 0 0 25%;
+    }
+    
+    li:nth-child(2n) {
+        background-color: #f2f2f2;
+    }
+    
+    li span.catty-cloud {
+        border: 1px solid black;
+        font-size: 0.6em;
+        padding: 3px;
+    }
+    </style>
+</head>
+
+<body>
+    <main>
+        <aside>
+            <i class="fa fa-bars"></i>
+            <i class="fa fa-home"></i>
+            <i class="fa fa-search"></i>
+            <i class="fa fa-volume-up"></i>
+            <i class="fa fa-user"></i>
+            <i class="fa fa-spotify"></i>
+            <i class="fa fa-cog"></i>
+            <i class="fa fa-soundcloud"></i>
+        </aside>
+        <section class="content">
+            <div class="music-head">
+                <!--第一个列表项：包含音乐详情-->
+                <div class="img-wrapper">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489226815816&di=e061e15a91192acf2be24209bc80fc9f&imgtype=0&src=http%3A%2F%2Fimg0.ph.126.net%2FepLXNKP9iMdhTHJY93ao5w%3D%3D%2F1927259165638052571.jpg" />
+                </div>
+                <!--专辑封面-->
+                <section class="catty-music">
+                    <!--专辑的其它细节-->
+                    <div>
+                        <p>CattyBoard Top 100 Single Charts (11.06.36)</p>
+                        <p>Unknown Artist</p>
+                        <p>2016 . Charts . 100 songs</p>
+                    </div>
+                    <div>
+                        <!--Music controls-->
+                        <i class="fa fa-play">Play all</i> <i class="fa fa-plus">Add to</i> <i class="fa fa-ellipsis-h">More</i>
+                    </div>
+                </section>
+            </div>
+            <!--end .music-head-->
+            <!--第二个列表项：包含专辑中的歌曲列表-->
+            <ul class="music-list">
+                <li>
+                    <p>1. One Dance</p>
+                    <p>Crake feat CatKid & Cyla</p>
+                    <p>2:54</p>
+                    <p><span class="catty-cloud">CATTY CLOUD SYNC</span></p>
+                </li>
+                <li>
+                    <p>2. Panda</p>
+                    <p>Cattee</p>
+                    <p>4:06</p>
+                    <p><span class="catty-cloud">CATTY CLOUD SYNC</span></p>
+                </li>
+                <li>
+                    <p>3. Can't Stop the Feeling!</p>
+                    <p>Catin Cimberlake</p>
+                    <p>3:56</p>
+                    <p><span class="catty-cloud">CATTY CLOUD SYNC</span></p>
+                </li>
+                <li>
+                    <p>4. Work From Home</p>
+                    <p>Cat Harmony feat Colla</p>
+                    <p>3:34</p>
+                    <p><span class="catty-cloud">CATTY CLOUD SYNC</span></p>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+
+</html>
