@@ -2,25 +2,30 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>组件公开数据接口</title>
 </head>
 
 <body>
-    <div id="app">
-        <h1>组件公开数据接口</h1>
-        <my-component message='Vue.js'></my-component>
-    </div>
-    <script src="vue.js"></script>
-    <script>
+<div id="app">
+    <h1>组件公开数据接口</h1>
+    <my-component message='Vue.js'></my-component>
+    <input v-model="person" placeholder="person">
+    <my-component :message='person'></my-component>
+</div>
+<script src="vue.js"></script>
+<script>
     Vue.component('my-component', {
         props: ['message'],
         template: '<div>Hello {{message}}</div>'
     })
     var app = new Vue({
-        el: '#app'
+        el: '#app',
+        data: {
+            person: 'pdc'
+        }
     })
-    </script>
+</script>
 </body>
 
 </html>
