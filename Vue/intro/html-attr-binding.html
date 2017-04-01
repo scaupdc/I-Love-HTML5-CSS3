@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>html属性绑定</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>html属性绑定</h1>
+        <a :href="url">Click</a>
+        <span :id="'span' + index">动态id</span>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            url: 'https://www.taobao.com',
+            index: 666
+        }
+    })
+    </script>
+</body>
+
+</html>

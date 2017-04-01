@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>组件-2</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>组件-2</h1>
+        <my-component></my-component>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    var myComponent = {
+        template: '<div>Hello {{message}}</div>',
+        data: function() {
+            return {
+                message: 'Vue.js'
+            }
+        }
+    }
+    var app = new Vue({
+        el: '#app',
+        components: {
+            'my-component': myComponent
+        }
+    })
+    </script>
+</body>
+
+</html>

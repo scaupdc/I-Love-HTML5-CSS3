@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>for循环</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>for循环</h1>
+        <ul>
+            <li v-for="item in list">{{item}}</li>
+        </ul>
+        <ul>
+            <li v-for="(item,index) in list">{{index}}-{{item}}</li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            list: ['apple', 'huawei', 'xiaomi']
+        }
+    })
+    </script>
+</body>
+
+</html>

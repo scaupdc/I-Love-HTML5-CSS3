@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>css binding</title>
+    <style>
+    .red {
+        color: red;
+    }
+    
+    .big {
+        font-size: 20px;
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>CSS绑定</h1>
+        <p :class="{red:isError}">Hello Vue.js</p>
+        <p class="red" :class="{big:isBig,bold:isBold}">Hello Vue.js</p>
+        <p v-bind:style="styleObject">Hello</p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isError: true,
+            isBig: true,
+            isBold: true,
+            styleObject: {
+                color: 'red',
+                transform: 'rotate(10deg)'
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

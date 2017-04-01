@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>methods-computed</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>methods-computed</h1>
+        <div>
+            <input placeholder="message" v-model="message">
+        </div>
+        <button @click="testMethod">testMethod</button>
+        <button @click="testComputed">testComputed</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello'
+        },
+        methods: {
+            testMethod: function() {
+                alert(this.message + ' at ' + Date.now())
+            },
+            testComputed: function() {
+                alert(this.computedMessage)
+            }
+        },
+        computed: {
+            computedMessage: function() {
+                return this.message + ' at ' + Date.now()
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
