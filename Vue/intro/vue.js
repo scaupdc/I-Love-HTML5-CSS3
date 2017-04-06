@@ -1900,7 +1900,7 @@ function initData (vm) {
     data = {};
     "development" !== 'production' && warn(
       'data functions should return an object:\n' +
-      'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function',
+      'https://vuejs.org/v2/guide/pages.html#data-Must-Be-a-Function',
       vm
     );
   }
@@ -2239,11 +2239,11 @@ function fnInvoker (o) {
 // generated render function is guaranteed to return Array<VNode>. There are
 // two cases where extra normalization is needed:
 
-// 1. When the children contains components - because a functional component
+// 1. When the children contains pages - because a functional component
 // may return an Array instead of a single root. In this case, just a simple
 // nomralization is needed - if any child is an Array, we flatten the whole
 // thing with Array.prototype.concat. It is guaranteed to be only 1-level deep
-// because functional components already normalize their own children.
+// because functional pages already normalize their own children.
 function simpleNormalizeChildren (children) {
   for (var i = 0; i < children.length; i++) {
     if (Array.isArray(children[i])) {
@@ -2465,7 +2465,7 @@ function lifecycleMixin (Vue) {
     }, noop);
     hydrating = false;
     // manually mounted instance, call mounted on self
-    // mounted is called for render-created child components in its inserted hook
+    // mounted is called for render-created child pages in its inserted hook
     if (vm.$vnode == null) {
       vm._isMounted = true;
       callHook(vm, 'mounted');
@@ -2682,7 +2682,7 @@ function createComponent (
   data.on = data.nativeOn;
 
   if (Ctor.options.abstract) {
-    // abstract components do not keep anything
+    // abstract pages do not keep anything
     // other than props & listeners
     data = {};
   }
@@ -2714,7 +2714,7 @@ function createFunctionalComponent (
       props[key] = validateProp(key, propOptions, propsData);
     }
   }
-  // ensure the createElement function in functional components
+  // ensure the createElement function in functional pages
   // gets a unique context - this is necessary for correct named slot check
   var _context = Object.create(context);
   var h = function (a, b, c, d) { return createElement(_context, a, b, c, d, true); };
@@ -2776,7 +2776,7 @@ function init (
     );
     child.$mount(hydrating ? vnode.elm : undefined, hydrating);
   } else if (vnode.data.keepAlive) {
-    // kept-alive components, treat as a patch
+    // kept-alive pages, treat as a patch
     var mountedNode = vnode; // work around flow
     prepatch(mountedNode, mountedNode);
   }
@@ -3586,7 +3586,7 @@ var KeepAlive = {
         return vnode
       }
       var key = vnode.key == null
-        // same constructor may get registered as different local components
+        // same constructor may get registered as different local pages
         // so cid alone is not enough (#3269)
         ? opts.Ctor.cid + (opts.tag ? ("::" + (opts.tag)) : '')
         : vnode.key;
@@ -3639,7 +3639,7 @@ function initGlobalAPI (Vue) {
   });
 
   // this is used to identify the "base" constructor to extend all plain-object
-  // components with in Weex's multi-instance scenarios.
+  // pages with in Weex's multi-instance scenarios.
   Vue.options._base = Vue;
 
   extend(Vue.options.components, builtInComponents);
@@ -4080,7 +4080,7 @@ function createPatchFunction (backend) {
         ) {
           warn(
             'Unknown custom element: <' + tag + '> - did you ' +
-            'register the component correctly? For recursive components, ' +
+            'register the component correctly? For recursive pages, ' +
             'make sure to provide the "name" option.',
             vnode.context
           );
@@ -5866,7 +5866,7 @@ var Transition = {
     }
 
     // apply transition data to child
-    // use getRealChild() to ignore abstract components e.g. keep-alive
+    // use getRealChild() to ignore abstract pages e.g. keep-alive
     var child = getRealChild(rawChild);
     /* istanbul ignore if */
     if (!child) {
@@ -6088,7 +6088,7 @@ Vue$3.config.isReservedTag = isReservedTag;
 Vue$3.config.getTagNamespace = getTagNamespace;
 Vue$3.config.mustUseProp = mustUseProp;
 
-// install platform runtime directives & components
+// install platform runtime directives & pages
 extend(Vue$3.options.directives, platformDirectives);
 extend(Vue$3.options.components, platformComponents);
 
@@ -7403,7 +7403,7 @@ function markStatic (node) {
   node.static = isStatic(node);
   if (node.type === 1) {
     // do not make component slot content static. this avoids
-    // 1. components not able to mutate slot nodes
+    // 1. pages not able to mutate slot nodes
     // 2. static slot content fails for hot-reloading
     if (
       !isPlatformReservedTag(node.tag) &&
@@ -7742,7 +7742,7 @@ function genData (el) {
   if (el.pre) {
     data += "pre:true,";
   }
-  // record original tag name for components using "is" attribute
+  // record original tag name for pages using "is" attribute
   if (el.component) {
     data += "tag:\"" + (el.tag) + "\",";
   }
@@ -7818,7 +7818,7 @@ function genInlineTemplate (el) {
   if ("development" !== 'production' && (
     el.children.length > 1 || ast.type !== 1
   )) {
-    warn$2('Inline-template components must have exactly one child element.');
+    warn$2('Inline-template pages must have exactly one child element.');
   }
   if (ast.type === 1) {
     var inlineRenderFns = generate(ast, currentOptions);
