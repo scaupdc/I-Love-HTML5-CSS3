@@ -1,6 +1,6 @@
 # simple
 
-> A Vue.js project
+> 这是本人在公司内部给新同事介绍vue所做的一个简洁易理解上手的小DEMO，基于VUE全家桶(Webpack2+Vue2+Vuex2+Vue-Router2)。希望对初学者有帮助，觉得帮到您就送个star哦！
 
 ## Build Setup
 
