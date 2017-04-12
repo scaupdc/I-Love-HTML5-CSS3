@@ -1,7 +1,6 @@
 <template>
   <div id="dashboard-welcome-div">
-    北京欢迎你！
-
+    欢迎来到王者荣耀
   </div>
 </template>
 

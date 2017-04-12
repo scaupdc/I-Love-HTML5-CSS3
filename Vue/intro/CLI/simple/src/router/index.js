@@ -4,16 +4,29 @@ Vue.use(Router)
 
 import store from '../stores'
 
-import errorPage from '../views/404.vue'
-import dashboardIndex from '../views/dashboard/dashboard-index.vue'
-import dashboard_1_1 from '../views/dashboard/dashboard-1-1.vue'
-import dashboard_1_2 from '../views/dashboard/dashboard-1-2.vue'
-import dashboard_2_1 from '../views/dashboard/dashboard-2-1.vue'
-import dashboard_2_2 from '../views/dashboard/dashboard-2-2.vue'
-import dashboardWelcome from '../views/dashboard/dashboard-welcome.vue'
-import blogIndex from '../views/blog/blog-index.vue'
-import blogDetail from '../views/blog/blog-detail.vue'
-import loginIndex from '../views/login/login-index.vue'
+// import errorPage from '../views/404.vue'
+// import dashboardIndex from '../views/dashboard/dashboard-index.vue'
+// import dashboard_1_1 from '../views/dashboard/dashboard-1-1.vue'
+// import dashboard_1_2 from '../views/dashboard/dashboard-1-2.vue'
+// import dashboard_2_1 from '../views/dashboard/dashboard-2-1.vue'
+// import dashboard_2_2 from '../views/dashboard/dashboard-2-2.vue'
+// import dashboardWelcome from '../views/dashboard/dashboard-welcome.vue'
+// import blogIndex from '../views/blog/blog-index.vue'
+// import blogDetail from '../views/blog/blog-detail.vue'
+// import loginIndex from '../views/login/login-index.vue'
+
+const errorPage = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-index.vue')))
+const dashboardIndex = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-index.vue')), 'dashboardIndex')
+const dashboardWelcome = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-welcome.vue')), 'dashboardIndex')
+const dashboard_1_1 = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-1-1.vue')))
+const dashboard_1_2 = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-1-2.vue')))
+const dashboard_2_1 = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-2-1.vue')))
+const dashboard_2_2 = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-2-2.vue')))
+const blogIndex = resolve => require.ensure([], () => resolve(require('../views/blog/blog-index.vue')))
+const blogDetail = resolve => require.ensure([], () => resolve(require('../views/blog/blog-detail.vue')))
+const loginIndex = resolve => require.ensure([], () => resolve(require('../views/login/login-index.vue')))
+
+// const dashboard_1_2 = resolve => require(['../views/dashboard/dashboard-1-2.vue'], resolve)
 
 const router = new Router({
   mode: 'history',
@@ -112,14 +125,18 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.state.auth) {
-      next()
-    } else {
-      next({path: '/login'})
-    }
+  if (to.path === '/') {
+    next({path: '/index'})
   } else {
-    next()
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      if (store.state.auth) {
+        next()
+      } else {
+        next({path: '/login'})
+      }
+    } else {
+      next()
+    }
   }
 })
 
