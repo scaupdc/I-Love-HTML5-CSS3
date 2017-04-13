@@ -1,5 +1,5 @@
 <template>
-  <div id="dashboard-welcome-div">
+  <div id="dashboard-welcome-div" class="h1">
     欢迎来到王者荣耀
   </div>
 </template>

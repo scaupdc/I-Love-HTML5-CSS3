@@ -8,10 +8,7 @@
 
 <script>
   export default {
-    name: 'blog-detail',
-    mounted(){
-
-    }
+    name: 'blog-detail'
   }
 </script>
 

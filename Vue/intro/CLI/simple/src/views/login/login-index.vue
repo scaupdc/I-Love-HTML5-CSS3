@@ -1,18 +1,13 @@
 <template>
   <div id="login-index-div">
-    <Card dis-hover style="width: 400px;">
-      <p slot="title">请先登录</p>
-      <p class="input-p">
-        <Icon type="person"></Icon>
-        <Input v-model.trim="userName" placeholder="请输入账号"></Input></p>
-      <p class="input-p">
-        <Icon type="locked"></Icon>
-        <Input v-model.trim="password" placeholder="请输入密码" type="password"></Input></p>
-      <Button type="primary" :loading="loading" @click="login">
-        <span v-if="!loading">登 录</span>
-        <span v-else>loading...</span>
-      </Button>
-    </Card>
+    <el-card class="box-card" style="width: 440px;">
+      <div slot="header" class="clearfix">
+        <h3 style="line-height: 30px;">请登录</h3>
+      </div>
+      <el-input v-model.trim="userName" placeholder="请输入账号" style="margin-bottom: 15px;"></el-input>
+      <el-input v-model.trim="password" placeholder="请输入密码" type="password" style="margin-bottom: 15px;"></el-input>
+      <el-button type="primary" :loading="loading" @click="login" style="width: 100%;">{{buttonTitle}}</el-button>
+    </el-card>
   </div>
 </template>
 
@@ -24,6 +19,11 @@
         userName: '',
         password: '',
         loading: false
+      }
+    },
+    computed: {
+      buttonTitle(){
+        return this.loading ? 'loading...' : '登 录'
       }
     },
     methods: {
@@ -38,11 +38,14 @@
               password: vmThis.password
             }
             vmThis.loading = false
-            this.$store.dispatch('login',user)
+            this.$store.dispatch('login', user)
             vmThis.$router.push({name: 'index'})
           }, 1500);
         } else {
-          this.$Message.warning('账号密码不能为空');
+          this.$message({
+            message: '账号和密码不能为空',
+            type: 'warning'
+          });
         }
       }
     }
@@ -55,22 +58,5 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-  }
-
-  .input-p {
-    display: flex;
-    align-items: center;
-  }
-
-  .input-p i {
-    margin-right: 10px;
-  }
-
-  .input-p {
-    margin-bottom: 15px;
-  }
-
-  button {
-    width: 100%;
   }
 </style>

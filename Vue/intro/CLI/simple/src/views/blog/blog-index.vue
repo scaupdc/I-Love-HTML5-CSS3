@@ -1,6 +1,27 @@
 <template>
   <div id="blog-index-div">
-    <Table border :context="self" :columns="blogColumns" :data="blogDatas"></Table>
+    <el-table :data="blogDatas" border style="width: 100%">
+
+      <el-table-column label="标题">
+        <template scope="scope">
+          <span>{{ scope.row.title }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="日期" width="180">
+        <template scope="scope">
+          <el-icon name="time"></el-icon>
+          <span style="margin-left: 10px">{{ scope.row.time }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" width="180">
+        <template scope="scope">
+          <el-button size="small" @click="handleView(scope.$index, scope.row)">查看</el-button>
+          <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -9,30 +30,6 @@
     name: 'blog-index',
     data () {
       return {
-        self: this,
-        blogColumns: [
-          {
-            title: '标题',
-            key: 'title',
-            render (row, column, index) {
-              return `<Icon type="compose"></Icon> <strong>${row.title}</strong>`;
-            }
-          },
-          {
-            title: '时间',
-            key: 'time',
-            width: 150,
-          },
-          {
-            title: '操作',
-            key: 'action',
-            width: 150,
-            align: 'center',
-            render (row, column, index) {
-              return `<i-button type="primary" size="small" @click="blogDetail(${index})">查看</i-button> <i-button type="error" size="small" @click="remove(${index})">删除</i-button>`;
-            }
-          }
-        ],
         blogDatas: [
           {
             blogid: 1,
@@ -58,10 +55,10 @@
       }
     },
     methods: {
-      blogDetail (index) {
+      handleView (index, row) {
         this.$router.push({name: 'blog-detail', params: {blogid: this.blogDatas[index].blogid}})
       },
-      remove (index) {
+      handleDelete (index, row) {
         this.blogDatas.splice(index, 1);
       }
     }

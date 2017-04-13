@@ -1,11 +1,11 @@
 <template>
   <div id="main-footer-div">
     <div id="content">
-      <p>Powered by
+      <span class="text-smaller">Powered by
         <a href="https://cn.vuejs.org/" target="_blank">Vue</a>
         &
         <a href="https://www.iviewui.com/" target="_blank">iView</a>
-      </p>
+      </span>
     </div>
 
   </div>
@@ -27,5 +27,11 @@
 
   #content {
     text-align: center;
+    font-size: 12px;
+    color: #222222;
+  }
+
+  #content a {
+    color: #222222;
   }
 </style>

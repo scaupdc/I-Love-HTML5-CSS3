@@ -4,18 +4,7 @@ Vue.use(Router)
 
 import store from '../stores'
 
-// import errorPage from '../views/404.vue'
-// import dashboardIndex from '../views/dashboard/dashboard-index.vue'
-// import dashboard_1_1 from '../views/dashboard/dashboard-1-1.vue'
-// import dashboard_1_2 from '../views/dashboard/dashboard-1-2.vue'
-// import dashboard_2_1 from '../views/dashboard/dashboard-2-1.vue'
-// import dashboard_2_2 from '../views/dashboard/dashboard-2-2.vue'
-// import dashboardWelcome from '../views/dashboard/dashboard-welcome.vue'
-// import blogIndex from '../views/blog/blog-index.vue'
-// import blogDetail from '../views/blog/blog-detail.vue'
-// import loginIndex from '../views/login/login-index.vue'
-
-const errorPage = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-index.vue')))
+const errorPage = resolve => require.ensure([], () => resolve(require('../views/404.vue')))
 const dashboardIndex = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-index.vue')), 'dashboardIndex')
 const dashboardWelcome = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-welcome.vue')), 'dashboardIndex')
 const dashboard_1_1 = resolve => require.ensure([], () => resolve(require('../views/dashboard/dashboard-1-1.vue')))
@@ -33,110 +22,74 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      components: {
-        main: dashboardIndex
-      },
-      meta: {requiresAuth: true},
-      children: [
-        {
-          path: '',
-          name: 'root',
-          components: {
-            dashboard: dashboardWelcome
-          }
-        }
-      ]
+      redirect: '/index'
     },
     {
       path: '/index',
-      components: {
-        main: dashboardIndex
-      },
+      component: dashboardIndex,
       meta: {requiresAuth: true},
       children: [
         {
-          path: 'dashboard-1-1',
+          path: '/index/dashboard-1-1',
           name: 'dashboard-1-1',
-          components: {
-            dashboard: dashboard_1_1
-          }
+          component: dashboard_1_1
         },
         {
           path: 'dashboard-1-2',
           name: 'dashboard-1-2',
-          components: {
-            dashboard: dashboard_1_2
-          }
+          component: dashboard_1_2
         },
         {
           path: 'dashboard-2-1',
           name: 'dashboard-2-1',
-          components: {
-            dashboard: dashboard_2_1
-          }
+          component: dashboard_2_1
         },
         {
           path: 'dashboard-2-2',
           name: 'dashboard-2-2',
-          components: {
-            dashboard: dashboard_2_2
-          }
+          component: dashboard_2_2
         },
         {
           path: '',
           name: 'index',
-          components: {
-            dashboard: dashboardWelcome
-          }
+          component: dashboardWelcome
         }
       ]
     },
     {
       path: '/blog',
       name: 'blog',
-      components: {
-        main: blogIndex
-      },
+      component: blogIndex,
       meta: {requiresAuth: true},
     },
     {
       path: '/blog/:blogid',
       name: 'blog-detail',
-      components: {
-        main: blogDetail
-      },
+      component: blogDetail,
       meta: {requiresAuth: true},
     },
     {
       path: '/login',
       name: 'login-index',
-      components: {
-        main: loginIndex
-      }
+      component: loginIndex,
     },
     {
       path: '*',
       name: 'error-page',
-      components: {
-        main: errorPage
-      }
+      component: errorPage,
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/') {
-    next({path: '/index'})
-  } else {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-      if (store.state.auth) {
-        next()
-      } else {
-        next({path: '/login'})
-      }
-    } else {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.state.auth) {
       next()
+    } else {
+      next({path: '/login'})
     }
+  } else {
+    next()
   }
 })
 

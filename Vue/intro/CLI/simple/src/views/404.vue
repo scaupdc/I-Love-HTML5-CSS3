@@ -1,13 +1,18 @@
 <template>
   <div id="error-page-div">
     <img src="../assets/404.jpg">
-    <router-link :to="{name:'index'}">返回首页</router-link>
+    <el-button type="text" @click="handleBack">返回首页</el-button>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'error-page'
+    name: 'error-page',
+    methods: {
+      handleBack(){
+        this.$router.push('/index')
+      }
+    }
   }
 </script>
 

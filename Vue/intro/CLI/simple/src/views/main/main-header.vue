@@ -3,11 +3,15 @@
     <div id="left">
       <div id="logo">ANNTO</div>
       <ul id="menu" v-show="isLogin">
+        <!--备注：这里的路由写法比较特殊，在这个场景中，to和:to产生的路由激活效果是不一致的-->
+        <!--如下，如果采用注释中的路由跳转写法，当进入二级页面时，顶部的li菜单的激活效果会失效，原因未知-->
         <li>
-          <router-link :to="{name:'index'}">仪表盘</router-link>
+          <!--<router-link :to="{name:'index'}" exact>仪表盘</router-link>-->
+          <router-link to="/index">仪表盘</router-link>
         </li>
         <li>
           <router-link :to="{name:'blog'}">博客</router-link>
+          <!--<router-link to="/blog" exact>博客</router-link>-->
         </li>
       </ul>
     </div>
@@ -16,21 +20,11 @@
       <span class="right-text">{{showUserName}}</span>
 
       <template v-if="isLogin">
-        <a @click="logoutModel = true">
-          <Icon type="log-out" size="18" color="white"></Icon>
-        </a>
-        <Modal
-          v-model="logoutModel"
-          title="退出当前账号？"
-          @on-ok="logout">
-          <p>您确定要退出当前账号？</p>
-        </Modal>
+        <el-button type="text" @click="handleLogout" style="color: white">注销</el-button>
       </template>
 
       <template v-else>
-        <a @click="login">
-          <Icon type="log-in" size="18" color="white"></Icon>
-        </a>
+        <el-button type="text" @click="handleLogin" style="color: white">登录</el-button>
       </template>
 
     </div>
@@ -60,15 +54,28 @@
     },
 
     methods: {
-      login () {
+      handleLogin () {
         this.$router.push({name: 'login-index'})
       },
-      logout(){
-        this.$store.dispatch('logout')
-        if (!this.$store.state.auth) {
-          this.$router.push({name: 'login-index'})
-        }
+      handleLogout(){
+        this.$confirm('确定退出登录？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+        }).then(() => {
+          this.$store.dispatch('logout')
+          if (!this.$store.state.auth) {
+            this.$router.push({name: 'login-index'})
+          }
+        }).catch(() => {
+
+        })
       }
+//      logout(){
+//        this.$store.dispatch('logout')
+//        if (!this.$store.state.auth) {
+//          this.$router.push({name: 'login-index'})
+//        }
+//      }
     }
   }
 </script>
@@ -93,8 +100,9 @@
     align-items: center;
   }
 
-  #right a {
+  #right i {
     font-size: 18px;
+    color: white;
   }
 
   .right-text {
@@ -112,7 +120,10 @@
   }
 
   #menu {
+    padding: 0;
+    margin: 0;
     display: inline-block;
+    list-style-type: none;
   }
 
   #menu li {
@@ -124,6 +135,7 @@
     line-height: 44px;
     font-size: 17px;
     color: #222222;
+    text-decoration: none;
   }
 
   #menu li a:hover {
@@ -132,11 +144,13 @@
 
   .router-link-active {
     color: white !important;
-    font-weight: bold;
   }
 
   #menu li:first-child {
     margin-right: 20px;
   }
 
+  .right-text {
+    color: #222222;
+  }
 </style>
