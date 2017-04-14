@@ -6,31 +6,38 @@ import store from './stores'
 
 import mainIndex from './views/main/main-index'
 
-//iViewUI
-// import  iView from 'iview'
-// import 'iview/dist/styles/iview.css'
-// import Button from 'iview/src/components/button';
-// import Card from 'iview/src/components/card';
-// import Icon from 'iview/src/components/icon';
-// import Input from 'iview/src/components/input';
-// import Menu from 'iview/src/components/menu';
-// import Table from 'iview/src/components/table';
-// import Message from 'iview/src/components/message';
-// import Modal from 'iview/src/components/modal';
-// Vue.component(Button.name, Button)
-// Vue.component(Card.name, Card)
-// Vue.component(Icon.name, Icon)
-// Vue.component(Input.name, Input)
-// Vue.component(Menu.name, Menu)
-// Vue.component(Table.name, Table)
-// Vue.component(Message.name, Message)
-// Vue.component(Modal.name, Modal)
-// Vue.use(iView)
-
 //ElementUI
-import ElementUI from 'element-ui'
+import {
+  Menu,
+  Submenu,
+  MenuItem,
+  Input,
+  Button,
+  Table,
+  TableColumn,
+  Icon,
+  Card,
+  Message,
+  MessageBox
+} from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-Vue.use(ElementUI)
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+Vue.use(Input)
+Vue.use(Button)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Icon)
+Vue.use(Card)
+Vue.use(Message)
+
+Vue.prototype.$msgbox = MessageBox
+Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$message = Message
+
+// Vue.prototype.$confirm = MessageBox.confirm
+// Vue.prototype.$message = Message
 
 Vue.config.silent = false
 Vue.config.devtools = true

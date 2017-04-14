@@ -70,12 +70,6 @@
 
         })
       }
-//      logout(){
-//        this.$store.dispatch('logout')
-//        if (!this.$store.state.auth) {
-//          this.$router.push({name: 'login-index'})
-//        }
-//      }
     }
   }
 </script>
